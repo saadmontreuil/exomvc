@@ -95,6 +95,13 @@ try
                 $controller = new VillesController();
                 $controller->display_ville($id_ville);
                 break;
+            case "population":
+                // on récupère ensuite l'id du ville
+                $id_ville = $url[1] ; // on peut rajouter des vérifications, notamment si l'id n'est pas un nombre ou si l'url est mal formée
+                $controller = new VillesController();
+                $controller->display_population($id_ville);
+                break;
+
 				
             // route chargée par défaut si aucune autre route n'a été chargée
             default:

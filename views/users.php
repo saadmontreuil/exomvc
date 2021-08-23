@@ -29,7 +29,19 @@
                         </thead>
                         <tbody>
                         <?php
-                        // $villes est défini dans le controlleur, on peut l'utiliser dans la vue
+                        if (count((array)$new_villes) > 1) {
+                            ?>
+                            <tr>
+                                <td><?= $new_villes->getId() ?></td>
+                                <td><?= remove_accents($new_villes->getDepartement()) ?></td>
+                                <td><?= $new_villes->getNom() ?></td>
+                                <td><?= $new_villes->getCodePostale() ?></td>
+                                <td><?= $new_villes->getCanton() ?></td>
+                                <td><?= $new_villes->getPopulation() ?></td>
+                                <td><?= $new_villes->getDensite() ?></td>
+                                <td><?= $new_villes->getSurface() ?></td>
+                            </tr>
+                        <?php } else {
 
                         foreach ($villes as $ville)
                         { ?>
@@ -43,7 +55,7 @@
                                 <td><?= $ville->getDensite() ?></td>
                                 <td><?= $ville->getSurface() ?></td>
                             </tr>
-                        <?php } ?>
+                        <?php } }?>
                         </tbody>
                     </table>
                 </div>

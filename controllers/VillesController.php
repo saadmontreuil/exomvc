@@ -19,6 +19,8 @@ class VillesController
     {
         // on récupère le tableau des utilisateurs dans une variable $villes
         $villes = $this->VilleManager->getAllVilles() ;
+
+
         // et on charge la vue qui utilisera $villes
         require_once "views/users.php";
     }
@@ -27,8 +29,15 @@ class VillesController
     public function display_ville($id_ville)
     {
         // on récupère l'utilisateur depuis le manager
-        $ville = $this->VilleManager->loadVille($id_ville) ;
+        $new_villes = $this->VilleManager->loadVille($id_ville) ;
         // et on charge la vue qui utilisera $ville
-        require_once "views/user.php";
+        require_once "views/users.php";
+    }
+    public function display_population($id_ville)
+    {
+        // on récupère l'utilisateur depuis le manager
+        $new_villes = $this->VilleManager->loadPopulation($id_ville) ;
+        // et on charge la vue qui utilisera $ville
+        require_once "views/population.php";
     }
 }
