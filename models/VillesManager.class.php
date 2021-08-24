@@ -154,4 +154,34 @@ class VillesManager extends Model
             return $new_ville;
         }
     }
+    public function loadVillesDepartement($departement)
+    {
+        /** vous pouvez écrire les requêtes pour les différents managers de DB, ou bien vous focaliser sur celui de votre choix */
+        if (DB_MANAGER == PDO) // version PDO
+        {
+            $req = $this->getDatabase()->prepare("SELECT * FROM villes_france");
+            $req->execute();
+            $villes = $req->fetchAll(PDO::FETCH_ASSOC);
+            $req->closeCursor();
+        } else if (DB_MANAGER == MEDOO) // version MEDOO
+        {
+            $villes = $this->getDatabase()->select("villes_france", "*", ["departement" => $departement]);
+        }
+
+        if (!$villes){echo "Aucune ville n'a été trouvé avec ce code postal."; die;}
+        // on a récupéré tous les utilisateurs, on les ajoute au manager de villes
+        foreach ($villes as $ville) {
+            $new_ville = new Ville(
+                $ville['id'],
+                $ville['departement'],
+                $ville['nom'],
+                $ville['code_postal'],
+                $ville['canton'],
+                $ville['population'],
+                $ville['densite'],
+                $ville['surface']
+            );
+            return $new_ville;
+        }
+    }
 }
