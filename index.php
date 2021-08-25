@@ -110,9 +110,15 @@ try
             case "villes":
                 // on récupère ensuite l'id du ville
                 $id_ville = $url[1] ; // on peut rajouter des vérifications, notamment si l'id n'est pas un nombre ou si l'url est mal formée
+                $id_ville2= $url[2];
+
+
                 $controller = new VillesController();
-                $controller->display_departement($id_ville);
+
+                $controller->display_canton($id_ville,$id_ville2);
+
                 break;
+
 
 				
             // route chargée par défaut si aucune autre route n'a été chargée

@@ -29,6 +29,7 @@
                         </thead>
                         <tbody>
                         <?php
+
                         if (count((array)$new_villes) > 1) {
                             ?>
                             <tr>
@@ -41,8 +42,8 @@
                                 <td><?= $new_villes->getDensite() ?></td>
                                 <td><?= $new_villes->getSurface() ?></td>
                             </tr>
-                        <?php } else {
 
+                        <?php } else {
                         foreach ($villes as $ville)
                         { ?>
                             <tr>

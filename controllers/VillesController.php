@@ -47,10 +47,11 @@ class VillesController
         // et on charge la vue qui utilisera $ville
         require_once "views/superficie.php";
     }
-    public function display_departement($id_ville)
+
+    public function display_canton($id_ville,$id_ville2)
     {
         // on récupère l'utilisateur depuis le manager
-        $new_villes = $this->VilleManager->loadVillesDepartement($id_ville) ;
+        $new_villes = $this->VilleManager->loadVillesCanton($id_ville,$id_ville2) ;
         // et on charge la vue qui utilisera $ville
         require_once "views/users.php";
     }

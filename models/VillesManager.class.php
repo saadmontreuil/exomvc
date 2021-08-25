@@ -135,7 +135,7 @@ class VillesManager extends Model
             $req->closeCursor();
         } else if (DB_MANAGER == MEDOO) // version MEDOO
         {
-            $villes = $this->getDatabase()->select("villes_france", "*", ["code_postal[~]" => $codepostal]);
+            $villes = $this->getDatabase()->select("villes_france", "*", ["code_postal[~]" => $codepostal."%"]);
         }
 
         if (!$villes){echo "Aucune ville n'a été trouvé avec ce code postal."; die;}
@@ -154,7 +154,8 @@ class VillesManager extends Model
             return $new_ville;
         }
     }
-    public function loadVillesDepartement($departement)
+
+    public function loadVillesCanton($departement,$canton=null)
     {
         /** vous pouvez écrire les requêtes pour les différents managers de DB, ou bien vous focaliser sur celui de votre choix */
         if (DB_MANAGER == PDO) // version PDO
@@ -165,7 +166,9 @@ class VillesManager extends Model
             $req->closeCursor();
         } else if (DB_MANAGER == MEDOO) // version MEDOO
         {
-            $villes = $this->getDatabase()->select("villes_france", "*", ["departement" => $departement]);
+
+
+            $villes = $this->getDatabase()->select("villes_france", "*", ["AND" => ["canton[~]" => $canton."%", "departement" => $departement]]);
         }
 
         if (!$villes){echo "Aucune ville n'a été trouvé avec ce code postal."; die;}
